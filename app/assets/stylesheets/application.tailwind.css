@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+
+@layer components {
+  .btn-primary {
+    @apply py-2 px-4 bg-blue-200;
+  }
+}
+
+*/
+
+.background-animate {
+  background-size: 200%;
+
+  -webkit-animation: AnimateBackgroudGradient 8s ease infinite;
+  -moz-animation: AnimateBackgroudGradient 8s ease infinite;
+  animation: AnimateBackgroudGradient 8s ease infinite;
+}
+
+@keyframes AnimateBackgroudGradient {
+  0%,
+  100% {
+    background-position: 40% 50%;
+  }
+  50% {
+    background-position: 100% 90%;
+  }
+}
