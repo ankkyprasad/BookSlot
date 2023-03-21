@@ -2,19 +2,74 @@
 <html lang="en">
   <head>
     <title>CalendlyCloneApp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%=
+      stylesheet_link_tag 'tailwind', 'inter-font', 'data-turbo-track': 'reload'
+    %>
+    <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
+    <%=
+      javascript_include_tag 'application',
+                             'data-turbo-track': 'reload',
+                             defer: true
+    %>
   </head>
   <body class="flex h-screen flex-col">
-    <%= render "shared/navbar" %>
-    <section class="bg-gray-50 h-full background-animate bg-gradient-to-r from-primary-500 to-primary-700">
-    <%= render "shared/flash" %>
+    <%= render 'shared/navbar' %>
+    <%# background-animate bg-gradient-to-r from-primary-500 to-primary-700 %>
+    <section class="bg-gray-100 h-full">
+      <%= render 'shared/flash' %>
       <%= yield %>
     </section>
-    <%= render "shared/footer" %>
+    <%= render 'shared/footer' %>
+    <dialog id="turbo-confirm" class="rounded">
+      <div class="md:flex items-center">
+        <div
+          class="rounded-full border border-gray-300 flex items-center justify-center w-14 h-14 flex-shrink-0 mx-auto"
+        >
+          <svg
+            aria-hidden="true"
+            class="bx bx-error text-3xl"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
+          </svg>
+        </div>
+        <div class="mt-4 md:mt-0 md:ml-6 text-center md:text-left">
+          <p class="font-bold">Delete your account</p>
+          <p class="text-sm text-gray-700 mt-1">
+            You will lose all of your data by deleting your account. This action
+            cannot be undone.
+          </p>
+        </div>
+      </div>
+      <form
+        class="text-center md:text-right mt-4 md:flex md:justify-end"
+        method="dialog"
+      >
+        <button
+          class="block w-full md:inline-block md:w-auto px-4 py-3 md:py-2 bg-red-200 text-red-700 rounded-lg font-semibold text-sm md:ml-2 md:order-2"
+          value="confirm"
+        >
+          Delete Account
+        </button>
+        <button
+          class="block w-full md:inline-block md:w-auto px-4 py-3 md:py-2 bg-gray-200 rounded-lg font-semibold text-sm mt-4
+          md:mt-0 md:order-1"
+          value="cancel"
+        >
+          Cancel
+        </button>
+      </form>
+    </dialog>
   </body>
 </html>

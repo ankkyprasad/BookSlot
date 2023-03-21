@@ -30,6 +30,13 @@
   "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.11.6.tgz"
   "version" "2.11.6"
 
+"@prettier/plugin-ruby@^1.0.0":
+  "integrity" "sha512-PGDCATgVTQz0s/NB9nStiXVCIr+hG/XnKeAO/kguaHrNf8VwCpP5Ul+/KQao0z0QFBy2PDY8kWptfDQCa7WMXg=="
+  "resolved" "https://registry.npmjs.org/@prettier/plugin-ruby/-/plugin-ruby-1.6.1.tgz"
+  "version" "1.6.1"
+  dependencies:
+    "prettier" ">=1.10"
+
 "@rails/actioncable@^7.0":
   "integrity" "sha512-tz4oM+Zn9CYsvtyicsa/AwzKZKL+ITHWkhiu7x+xF77clh2b4Rm+s6xnOgY/sGDWoFWZmtKsE95hxBPkgQQNnQ=="
   "resolved" "https://registry.npmjs.org/@rails/actioncable/-/actioncable-7.0.4.tgz"
@@ -75,3 +82,20 @@
   "integrity" "sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg=="
   "resolved" "https://registry.npmjs.org/mini-svg-data-uri/-/mini-svg-data-uri-1.4.4.tgz"
   "version" "1.4.4"
+
+"prettier-html-templates@^0.1.0":
+  "integrity" "sha512-KdLveYzO2kJLiwUAebd5UFeKP8h3OqFhOiLbkgeIuS1WNoCRTyxW4KuyGfbh3F+Rp/2A6mipRxCq2zPi+//pmg=="
+  "resolved" "https://registry.npmjs.org/prettier-html-templates/-/prettier-html-templates-0.1.0.tgz"
+  "version" "0.1.0"
+
+"prettier-plugin-erb@^0.4.0":
+  "integrity" "sha512-5RAdvT5BBf29hfC8GmqiMRFiD5g4BZGZDERZHvM5ouOor2TVT0jM0ntmCzFpS2Q32OkUAGFYsRxXDoYscvToXA=="
+  "resolved" "https://registry.npmjs.org/prettier-plugin-erb/-/prettier-plugin-erb-0.4.0.tgz"
+  "version" "0.4.0"
+  dependencies:
+    "prettier-html-templates" "^0.1.0"
+
+"prettier@^2.0.0", "prettier@^2.2.1", "prettier@>=1.10", "prettier@>=2.0.0 <2.3":
+  "integrity" "sha512-PqyhM2yCjg/oKkFPtTGUojv7gnZAoG80ttl45O6x2Ug/rMJw4wcc9k6aaf2hibP7BGVCCM33gZoGjyvt9mm16Q=="
+  "resolved" "https://registry.npmjs.org/prettier/-/prettier-2.2.1.tgz"
+  "version" "2.2.1"
