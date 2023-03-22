@@ -1,2 +1,15 @@
-<h1>Dashboard</h1>
-<%= current_user.name %>
+<div class="w-5/6 mx-auto bg-white border border-gray-200 rounded-lg shadow flex flex-col items-center my-8">
+    <div class="border-b w-full flex justify-center">
+      <div class="flex justify-between w-5/6 m-4 items-center">
+        <%= link_to "Create Event", new_event_path, class: "inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300" %>
+      </div>
+    </div>
+
+    <% if @events.present? %>
+        <div class="w-5/6 grid mb-8 border md:mb-12 md:grid-cols-2 mt-8">
+            <% @events.each do |event| %>
+                <%= render 'event_card', event: event %>
+            <% end %>
+        </div>
+    <% end %>
+</div>

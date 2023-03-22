@@ -4,6 +4,8 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
   before_action :authenticate_user!
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
 
   def show; end
 
@@ -43,7 +45,7 @@ class EventsController < ApplicationController
     @event.destroy
 
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -52,7 +54,11 @@ class EventsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_event
-    @event = Event.find(params[:id])
+    @event = Event.find_by!(id: params[:id], user_id: current_user.id)
+  end
+
+  def record_not_found
+    render 'layouts/record_not_found', status: :not_found
   end
 
   # Only allow a list of trusted parameters through.

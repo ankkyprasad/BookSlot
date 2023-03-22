@@ -1,15 +1,26 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
-
-    <%= render @event %>
-
-    <%= link_to 'Edit this event', edit_event_path(@event), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this event', event_path(@event), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+<div class="flex justify-center py-4">
+  <div
+    class="w-5/6 bg-white border border-gray-200 rounded-lg shadow flex flex-col items-center"
+  >
+    <div
+      class="border-b w-full flex justify-center"
+      style="border-bottom: 2px solid <%= @event.color %>;"
+    >
+      <div class="flex justify-between w-5/6 m-4 items-center">
+        <h1 class="text-xl font-medium text-gray-900">
+          <%= @event.name %>
+        </h1>
+        <%= link_to "Go Back", root_path, class: "inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300" %>
+      </div>
     </div>
-    <%= link_to 'Back to events', events_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="w-4/5 mb-4">
+      <%= render @event %>
+      <%= link_to 'Edit', edit_event_path(@event), class: "inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300" %>
+      <%=
+        link_to 'Destroy', event_path(@event), class: "inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300",                 data: {
+          turbo_method: :delete,
+        }
+      %>
+    </div>
   </div>
 </div>

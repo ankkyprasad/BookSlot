@@ -14,4 +14,6 @@ Rails.application.routes.draw do
 
   resources :events, except: %i[index]
   root to: 'home#index'
+
+  match '*unmatched', to: 'application#not_found_method', via: :all
 end

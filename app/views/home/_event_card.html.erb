@@ -1,0 +1,21 @@
+<figure
+  class="flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 rounded-t-lg md:rounded-t-none md:rounded-tl-lg md:border-r"
+>
+  <blockquote class="w-full mb-4 text-gray-500">
+    <h3 class="text-lg font-semibold text-gray-900">
+      <%= event.name %>
+    </h3>
+    <div class="my-4 font-light truncate">
+      <%= event.description %>
+    </div>
+  </blockquote>
+  <div class="flex items-center justify-center space-x-3">
+    <%= link_to 'Show', event_path(event), class: "inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300" %>
+    <%= link_to 'Edit', edit_event_path(event), class: "inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300" %>
+    <%=
+      link_to 'Destroy', event_path(event), class: "inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300",                 data: {
+        turbo_method: :delete,
+      }
+    %>
+  </div>
+</figure>
