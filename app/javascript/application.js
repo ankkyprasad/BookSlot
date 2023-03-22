@@ -2,6 +2,8 @@
 import "@hotwired/turbo-rails";
 import "./controllers";
 import "flowbite/dist/flowbite.turbo.js";
+import "trix";
+import "@rails/actiontext";
 
 Turbo.setConfirmMethod((message, element) => {
   const dialog = document.getElementById("turbo-confirm");

@@ -18,11 +18,16 @@
   <body class="flex h-screen flex-col">
     <%= render 'shared/navbar' %>
     <%# background-animate bg-gradient-to-r from-primary-500 to-primary-700 %>
-    <section class="bg-gray-100 h-full">
+    <section class="bg-gray-100 h-full overflow-y-scroll	">
       <%= render 'shared/flash' %>
       <%= yield %>
     </section>
-    <%= render 'shared/footer' %>
+    <%
+=begin%>
+     <%= render 'shared/footer' %>
+
+<%
+=end%>
     <dialog id="turbo-confirm" class="rounded">
       <div class="md:flex items-center">
         <div

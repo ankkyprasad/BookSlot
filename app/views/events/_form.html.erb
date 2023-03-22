@@ -1,0 +1,95 @@
+<%= form_with(model: event, class: "space-y-6") do |form| %>
+  <% if event.errors.any? %>
+    <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+      <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+      <span class="sr-only">Danger</span>
+      <div>
+        <span class="font-medium">
+          <%= pluralize(event.errors.count, "error") %> prohibited this event from
+        being saved:
+        </span>
+        <ul class="mt-1.5 ml-4 list-disc list-inside">
+          <% event.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, class: "block mb-2 text-sm font-medium text-gray-900" %>
+    <%= form.text_field :name, class: "bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" %>
+  </div>
+
+  <div>
+    <%= form.label :location, class: "block mb-2 text-sm font-medium text-gray-900" %>
+    <%= form.number_field :location, class: "bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" %>
+  </div>
+
+  <div>
+    <%= form.label :description, class: "block mb-2 text-sm font-medium text-gray-900" %>
+    <div
+      class="w-full mb-4 border-0 border-gray-200 bg-white focus:ring-primary-500 focus:border-primary-500"
+    >
+      <%= form.rich_text_area :description, class: "text-gray-900 text-sm bg-white focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.label :color, class: "block mb-2 text-sm font-medium text-gray-900" %>
+    <%= form.text_field :color, class: "bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" %>
+  </div>
+
+  <div>
+    <%= form.label :duration, class: "block mb-2 text-sm font-medium text-gray-900" %>
+    <%= form.number_field :duration, class: "bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" %>
+  </div>
+
+  <div class="flex items-start">
+    <div class="flex items-center h-5">
+      <%= form.check_box :payment_required, class: "w-4 h-4 border border-gray-300 rounded bg-white focus:ring-3 focus:ring-primary-300", id: "payment-required-checkbox" %>
+    </div>
+    <%= form.label :payment_required, class: "ml-2 text-sm font-medium text-gray-900" %>
+  </div>
+
+  <div>
+    <%= form.label :price, class: "block mb-2 text-sm font-medium text-gray-900" %>
+    <%= form.number_field :price, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 cursor-not-allowed disabled", id: "price-field", disabled: true %>
+  </div>
+
+  <div class="hidden">
+    <%= form.label :user_id, class: "block mb-2 text-sm font-medium text-gray-900" %>
+    <%= form.text_field :user_id, value: current_user.id %>
+  </div>
+
+  <div>
+    <%= form.submit class: "text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  window.onload = function () {
+    const paymentRequiredCheckbox = document.getElementById(
+      "payment-required-checkbox"
+    );
+
+    paymentRequiredCheckbox.addEventListener("click", function () {
+      console.log("working");
+      const priceField = document.getElementById("price-field");
+      if (this.checked) {
+        priceField.classList.remove("disabled");
+        priceField.classList.remove("cursor-not-allowed");
+        priceField.classList.remove("bg-gray-50");
+        priceField.classList.add("bg-white");
+      } else {
+        priceField.classList.add("disabled");
+        priceField.classList.add("cursor-not-allowed");
+        priceField.classList.remove("bg-white");
+        priceField.classList.add("bg-gray-50");
+        priceField.value = "";
+      }
+      priceField.disabled = !this.checked;
+    });
+  };
+</script>
