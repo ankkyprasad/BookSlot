@@ -7,9 +7,4 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.welcome.subject
   #
-  def welcome(recipient)
-    @greeting = 'Hi there'
-
-    mail to: recipient
-  end
 end
