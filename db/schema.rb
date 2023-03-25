@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_22_091205) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_25_112835) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -49,6 +49,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_091205) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "bookings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "status", default: 0
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.boolean "paid", default: false
+    t.boolean "email_verified", default: false
+    t.string "email_verification_token"
+    t.bigint "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_bookings_on_event_id"
+  end
+
   create_table "events", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.integer "location", default: 0
@@ -75,11 +91,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_091205) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookings", "events"
   add_foreign_key "events", "users"
 end

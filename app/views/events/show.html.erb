@@ -10,17 +10,24 @@
         <h1 class="text-xl font-medium text-gray-900">
           <%= @event.name %>
         </h1>
-        <%= link_to "Go Back", root_path, class: "inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300" %>
+        <%= link_to "Go Back", :back, class: "inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300" %>
       </div>
     </div>
     <div class="w-4/5 mb-4">
       <%= render @event %>
-      <%= link_to 'Edit', edit_event_path(@event), class: "inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300" %>
-      <%=
-        link_to 'Destroy', event_path(@event), class: "inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300",                 data: {
-          turbo_method: :delete,
-        }
-      %>
+
+      <% if current_user.present? && @event.user_id == current_user.id %>
+        <%= link_to 'Edit', edit_event_path(@event), class: "inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 mt-6" %>
+        <%=
+          link_to 'Destroy', event_path(@event), class: "inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 mx-4",                 data: {
+            turbo_method: :delete,
+          }
+        %>
+      <% else %>
+        <%= link_to "Book Event", new_booking_path(@event), class: "inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 mt-6" %>
+      <% end %>
     </div>
   </div>
 </div>
+
+

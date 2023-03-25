@@ -2,10 +2,10 @@
 
 # Events Controller
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[show edit update destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %i[show]
+  before_action :set_event, only: %i[edit update destroy]
+  before_action :set_show_event, only: %i[show]
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-
 
   def show; end
 
@@ -52,7 +52,6 @@ class EventsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_event
     @event = Event.find_by!(id: params[:id], user_id: current_user.id)
   end
@@ -61,8 +60,11 @@ class EventsController < ApplicationController
     render 'layouts/record_not_found', status: :not_found
   end
 
-  # Only allow a list of trusted parameters through.
   def event_params
     params.require(:event).permit(:name, :location, :description, :color, :duration, :payment_required, :price, :user_id)
+  end
+
+  def set_show_event
+    @event = Event.find_by!(id: params[:id])
   end
 end

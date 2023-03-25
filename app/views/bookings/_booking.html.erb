@@ -1,0 +1,37 @@
+<div id="<%= dom_id booking %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Status:</strong>
+    <%= booking.status %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">First name:</strong>
+    <%= booking.first_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Last name:</strong>
+    <%= booking.last_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Email:</strong>
+    <%= booking.email %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Start at:</strong>
+    <%= booking.start_at %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">End at:</strong>
+    <%= booking.end_at %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this booking", booking, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this booking', edit_booking_path(booking), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
