@@ -25,7 +25,7 @@ class BookingsController < ApplicationController
 
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to booking_url(@booking), notice: 'Booking was successfully created.' }
+        format.html { redirect_to booking_url(@booking), notice: 'Booking was successfully created. Please check your email and verify your email!!' }
         format.json { render :show, status: :created, location: @booking }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -43,6 +43,20 @@ class BookingsController < ApplicationController
     end
   end
 
+  def verify_email
+    booking = Booking.find_by(email_verification_token: params[:token])
+
+    respond_to do |format|
+      if booking&.update!(email_verified: true, email_verification_token: '')
+        format.html { redirect_to root_path, notice: 'Booking Verified' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to root_path, status: :found }
+        format.json { render json: booking.errors, status: :found }
+      end
+    end
+  end
+
   private
 
   def set_booking
@@ -54,9 +68,9 @@ class BookingsController < ApplicationController
   end
 
   def destroy_authorization
-    if current_user.nil? || current_user.id != @booking.event.user_id
-      flash[:alert] = 'Unauthorized to delete the booking'
-      redirect_to root_path, status: :unauthorized and return
-    end
+    return unless current_user.nil? || current_user.id != @booking.event.user_id
+
+    flash[:alert] = 'Unauthorized to delete the booking'
+    redirect_to root_path, status: :found and return
   end
 end

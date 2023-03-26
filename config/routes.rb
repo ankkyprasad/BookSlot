@@ -13,10 +13,14 @@ Rails.application.routes.draw do
   end
 
   root to: 'home#index'
-  resources :events, except: %i[index]
+
   get ':slug', to: 'users#show', as: :user
+
+  resources :events, except: %i[index]
+
   resources :bookings, except: %i[edit update new index]
   get '/bookings/new/:id', to: 'bookings#new', as: :new_booking
+  get 'bookings/verify/:token', to: 'bookings#verify_email', as: :verify_booking_email
 
   match '*unmatched', to: 'application#page_not_found', via: :all
 end
