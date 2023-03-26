@@ -2,22 +2,26 @@
 
 # Booking controller
 class BookingsController < ApplicationController
-  before_action :set_booking, only: %i[show edit update destroy]
+  before_action :set_booking, only: %i[show destroy]
+  before_action :destroy_authorization, only: %i[destroy]
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def index
     @bookings = Booking.all
   end
 
-  def show; end
+  def show
+    @event = @booking.event
+  end
 
   def new
     @booking = Booking.new
+    @event = Event.find_by!(id: params[:id])
   end
-
-  def edit; end
 
   def create
     @booking = Booking.new(booking_params)
+    @event = Event.find_by!(booking_params[:event_id])
 
     respond_to do |format|
       if @booking.save
@@ -25,18 +29,6 @@ class BookingsController < ApplicationController
         format.json { render :show, status: :created, location: @booking }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @booking.update(booking_params)
-        format.html { redirect_to booking_url(@booking), notice: 'Booking was successfully updated.' }
-        format.json { render :show, status: :ok, location: @booking }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
     end
@@ -53,13 +45,18 @@ class BookingsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_booking
     @booking = Booking.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def booking_params
-    params.require(:booking).permit(:status, :first_name, :last_name, :email, :start_at, :end_at)
+    params.require(:booking).permit(:first_name, :last_name, :email, :start_at, :event_id)
+  end
+
+  def destroy_authorization
+    if current_user.nil? || current_user.id != @booking.event.user_id
+      flash[:alert] = 'Unauthorized to delete the booking'
+      redirect_to root_path, status: :unauthorized and return
+    end
   end
 end

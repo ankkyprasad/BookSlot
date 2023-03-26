@@ -14,8 +14,9 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
   resources :events, except: %i[index]
-  resources :bookings
   get ':slug', to: 'users#show', as: :user
+  resources :bookings, except: %i[edit update new index]
+  get '/bookings/new/:id', to: 'bookings#new', as: :new_booking
 
-  match '*unmatched', to: 'application#not_found_method', via: :all
+  match '*unmatched', to: 'application#page_not_found', via: :all
 end

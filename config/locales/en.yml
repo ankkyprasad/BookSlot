@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+
+en:
+  booking_mailer:
+    verify_booking:
+      subject: 'Verify your email for booking event'

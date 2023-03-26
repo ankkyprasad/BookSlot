@@ -1,15 +1,23 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
-
-    <%= render @booking %>
-
-    <%= link_to 'Edit this booking', edit_booking_path(@booking), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this booking', booking_path(@booking), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+<div class="flex justify-center py-4">
+  <div
+    class="w-4/6 bg-white border border-gray-200 rounded-lg shadow flex flex-col items-center"
+  >
+    <div
+      class="border-b w-full flex justify-center"
+      style="border-bottom: 2px solid <%= @event.color %>;"
+    >
+      <div class="flex justify-between w-5/6 m-4 items-center">
+      <div>
+        <h1 class="text-xl font-medium text-gray-900">
+          Booked <%= @event.name %>
+        </h1>
+        <p class="text-sm text-gray-500">Event by: <%= @event.user.name %> </p>
+      </div>
+        <%= link_to "Go Back", user_path(@event.user.slug), class: "inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300" %>
+      </div>
     </div>
-    <%= link_to 'Back to bookings', bookings_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="w-4/5 mb-4">
+      <%= render @booking %>
+    </div>
   </div>
 </div>

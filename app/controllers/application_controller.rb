@@ -1,7 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def not_found_method
+  def page_not_found
+    render 'layouts/record_not_found', status: :not_found
+  end
+
+  def record_not_found
     render 'layouts/record_not_found', status: :not_found
   end
 

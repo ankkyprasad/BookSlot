@@ -55,6 +55,7 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'byebug', '~> 11.1'
   gem 'dotenv-rails'
   gem 'letter_opener'
   gem 'web-console'
@@ -73,5 +74,5 @@ group :test do
   gem 'webdrivers'
 end
 gem 'devise'
-gem 'tailwindcss-rails', '~> 2.0'
 gem 'sendgrid-ruby'
+gem 'tailwindcss-rails', '~> 2.0'
