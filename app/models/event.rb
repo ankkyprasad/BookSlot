@@ -7,5 +7,5 @@ class Event < ApplicationRecord
   has_rich_text :description
 
   validates :name, :duration, presence: true
-  enum location: { Meet: 0, Zoom: 1, Teams: 2 }
+  enum location: { meet: 0, zoom: 1, team: 2 }
 end
