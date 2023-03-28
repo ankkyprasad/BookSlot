@@ -54,3 +54,4 @@ production:
   database: <%= ENV["MYSQL_DB"] %>
   username: <%= ENV["MYSQL_USERNAME"] %>
   password: <%= ENV["MYSQL_PASSWORD"] %>
+  adapter: mysql2
