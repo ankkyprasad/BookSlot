@@ -17,6 +17,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.user_id = current_user.id
 
     respond_to do |format|
       if @event.save
@@ -57,7 +58,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :location, :description, :color, :duration, :payment_required, :price, :user_id)
+    params.require(:event).permit(:name, :location, :description, :color, :duration, :payment_required, :price)
   end
 
   def set_show_event
