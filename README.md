@@ -1,21 +1,21 @@
-# Booking App Documentation
-The Booking App is a Ruby on Rails application that allows users to book events. Users can view available events, make bookings, and manage their bookings.
+# BookSlot
+BookSlot is a user-friendly software application built on ruby on rails that helps to schedule appointments, meetings, and events without the inconvenience of prolonged back-and-forth communication. Users can share their personalized BookSlot link, which displays their availability, making it effortless for others to set appointments with them.
 
 ## System Requirements
-* Ruby version 3.1.0 or higher
+* Ruby version 3.1.1 or higher
 
-* Rails version 7.0.0 or higher
+* Rails version 7.0.4 or higher
 
 * MySQL database
 
 ## Installation
 
-To run the Booking App on your local machine, follow these steps:
+To run the BookSlot on your local machine, follow these steps:
 
 
 1. Clone the repository:
     ```bash
-    $ git clone https://github.com/yourusername/booking-app.git
+    $ git clone https://github.com/ankkyprasad/BookSlot.git
     ```
 
 
@@ -41,7 +41,7 @@ To run the Booking App on your local machine, follow these steps:
 <br />
 
 ## Database Schema
-The Booking App uses three tables in the MySQL database:
+The BookSlot uses three tables in the MySQL database:
 
 ### **Booking Table:**
 <br />

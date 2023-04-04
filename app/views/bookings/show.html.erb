@@ -18,6 +18,9 @@
     </div>
     <div class="w-4/5 mb-4">
       <%= render @booking %>
+      <% if current_user&.id == @booking&.event.user_id %>
+        <%= link_to "Cancel Booking", "/bookings/#{@booking.id}", class: "inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 mt-4", data: {turbo_method: :delete} %>
+      <% end %>
     </div>
   </div>
 </div>

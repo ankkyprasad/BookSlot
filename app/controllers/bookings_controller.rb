@@ -38,7 +38,7 @@ class BookingsController < ApplicationController
     @booking.destroy
 
     respond_to do |format|
-      format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Booking was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -68,7 +68,7 @@ class BookingsController < ApplicationController
   end
 
   def destroy_authorization
-    return unless current_user.nil? || current_user.id != @booking.event.user_id
+    return unless current_user&.id != @booking.event.user_id
 
     flash[:alert] = 'Unauthorized to delete the booking'
     redirect_to root_path, status: :found and return

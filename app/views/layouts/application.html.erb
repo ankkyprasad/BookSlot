@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%=
-      stylesheet_link_tag 'tailwind', 'inter-font', 'data-turbo-track': 'reload'
-    %>
+    <%= stylesheet_link_tag 'tailwind', 'inter-font', 'data-turbo-track': 'reload' %>
     <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
     <%=
       javascript_include_tag 'application',
                              'data-turbo-track': 'reload',
                              defer: true
     %>
+
+    <link
+      rel="icon"
+      href="https://static.vecteezy.com/system/resources/previews/014/586/732/original/calendar-icon-a-red-calendar-for-reminders-of-appointments-and-important-festivals-in-the-year-png.png"
+    />
   </head>
   <body class="flex h-screen flex-col">
     <%= render 'shared/navbar' %>
@@ -22,12 +25,6 @@
       <%= render 'shared/flash' %>
       <%= yield %>
     </section>
-    <%
-=begin%>
-     <%= render 'shared/footer' %>
-
-<%
-=end%>
     <dialog id="turbo-confirm" class="rounded">
       <div class="md:flex items-center">
         <div

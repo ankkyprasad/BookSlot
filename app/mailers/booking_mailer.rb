@@ -12,4 +12,10 @@ class BookingMailer < ApplicationMailer
 
     mail to: @booking.email
   end
+
+  def cancel_booking(booking)
+    @booking = booking
+
+    mail to: @booking.email
+  end
 end
